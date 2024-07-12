@@ -1,0 +1,18 @@
+{
+    "todods":[{
+        "id":1,
+        "name":"anklesh",
+        "status":false
+    },
+    {
+        "id":2,
+        "name":"rohit",
+        "status":true
+    },
+    {
+        "id":3,
+        "name":"abhishek",
+        "status":true
+    }
+]
+}
