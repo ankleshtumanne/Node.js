@@ -1,0 +1,39 @@
+que_1: What is a NoSQL Database, and explain the types of NoSQL database?
+Ans: NoSQL databases are defined as non-tabular databases that handle data storage differently as compared to relational tables. 
+
+que_2 : What is the difference between SQL and NoSQL databases?
+ans: SQL databases are relational , and NoSQL databases are non-relational.
+
+que_3 : How to choose between MongoDB and MySQL based on your requirements?
+ans :   MySQL is faster at selecting a large number of records,
+        while MongoDB is significantly faster at inserting or updating a large number of records.
+
+que_4 : What are collections and documents in a MongoDB database?
+ans:  MongoDB stores data records as documents (specifically BSON documents) which are gathered together in collections.
+
+que_5 : What is BSON? What is the difference between BSON and JSON?
+ans : : BSON is a binary-encoded format, whereas JSON is a text-based format.
+
+que_6 : What are MongoDB Compass and MongoDB Shell used for?
+ans : Mongo Compass is typically more used to import/export data and manage the collections in the database.
+      While Mongo DB shell is more for console type debugging.
+
+que_7 : How to create collections in MongoDB?
+ans: Creating collections in MongoDB is a straightforward process.
+      Collections in MongoDB are equivalent to tables in relational databases and are used to store documents. 
+
+que_8: What is the difference between insertMany and insertOne?
+ans : insertMany() - Insert multiple documents into a collection.
+
+que_9: What is the difference between deleteOne and deleteMany?
+ans : DeleteOne() , which deletes the first document that matches the filter.
+      DeleteMany() , which deletes all documents that match the filter.
+que_10 : How to read data in MongoDB? What is the difference between find and findOne?
+ans :   findOne returns a single document, where find returns a cursor.
+
+que_11 : What is $set in MongoDB?
+ans : The $set operator replaces the value of a field with the specified value.
+
+que 12 : How to filter data using MongoDB?
+ans : You can type MongoDB filter documents into the query bar to display only documents which match the specified criteria.
+

@@ -42,16 +42,8 @@ server.post("/post-user",(req,res)=>{
 
 
 
-server.post("/update-user",(req,res)=>{
+server.post("/update_user",(req,res)=>{
     const data=getData()
-    // console.log(data)
-    if(data){
-       res.json({ message: "Got data",data:data});
-    }
-    else{
-        res.json({message:"getting error"})
-    }
-   ///////////////////////////////////////////////////////////
     let flag=false
     const ans=data.todos.map((ele,i)=>{
         console.log(ele.status, ele.id)
@@ -72,29 +64,42 @@ server.post("/update-user",(req,res)=>{
     }
     
 })
-
-server.delete("/delete-user",(req,res)=>{
-    const deleteId=parseInt(req.params.id)
-    console.log(deleteId)
-    const data=getData()
-    console.log(data)
-    const flag=false
-    const ans=data.todos.foreach((ele,i)=>{
-        if(ele.id===deleteId){
-            data.todos.splice(todoIndex, 1);
-            flag = true
+// registered user can delete
+// to check user registered or not
+const checkUser = (req,res,next)=>{
+    let data = fs.readFileSync("./db.json","utf-8")
+    //req.body.user.name
+    data.user.forEach((el,i)=>{
+        if(el.name == req.body.user.name){
+            next()
+            return
         }
-        // writeDbData(data);
     })
-    if (flag) {
-        writeDbData(data);
-        res.json({ message: "Query deleted successfully" });
-    } else {
-        res.status(404).json({ message: "User not found" });
-    }
-    // res.json({massege:"query deleted successfull"})
+    res.status(401).json({message:"Unauthorised to perform this action"})
+}
+// server.delete("/delete-user/:id",checkUser,(req,res)=>{
+//     //after deleting user,you want to call login function
+//     const deleteId=parseInt(req.params.id)
+//     console.log(deleteId)
+//     const data=getData()
+//     console.log(data)
+//     const flag=false
+//     const ans=data.todos.foreach((ele,i)=>{
+//         if(ele.id===deleteId){
+//             data.todos.splice(todoIndex, 1);
+//             flag = true
+//         }
+//         // writeDbData(data);
+//     })
+//     if (flag) {
+//         writeDbData(data);
+//         res.json({ message: "Query deleted successfully" });
+//     } else {
+//         res.status(404).json({ message: "User not found" });
+//     }
+//     // res.json({massege:"query deleted successfull"})
 
-})
+// })
 server.listen(PORT,()=>{
     console.log(`server started on port : http://localhost:${PORT}`)
 })
