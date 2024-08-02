@@ -16,8 +16,10 @@ const movieModel= mongoose.model("movie",movieSchema)
 app.get("/user_data",async (req,res)=>{
     try {
         const {title,sortByrating,page,order="asc"} = req.query;
-        const pagenumber=0
-        const limit=5
+        // const pagenumber=0
+        // const limit=5
+        const pagenumber = parseInt(req.query.page) - 1 || 0;
+        const limit = parseInt(req.query.limit) || 5;
         let filter = {};
         if (title) {
             filter.title = title;
