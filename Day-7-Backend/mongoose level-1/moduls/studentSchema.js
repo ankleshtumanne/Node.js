@@ -1,11 +1,21 @@
 const mongoose=require("mongoose")
 
+const CourseSchema=new mongoose.Schema({
+    title:String,
+    category:String,
+    difficulty:String,
+    description:String
+})
+
+const courseModel=mongoose.model("course",CourseSchema)
+
 const userSchema=mongoose.Schema({
-    name:String,
-    email:String,
-    password:String
+    username:String,
+    
+    password:String,
+    enrolledCourse:[String]
 })
 
 const userModel=mongoose.model("user",userSchema)
 
-module.exports=userModel
+module.exports={userModel,courseModel}

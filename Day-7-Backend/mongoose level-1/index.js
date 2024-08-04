@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 const express=require("express")
-const userModel = require("./moduls/studentSchema")
+const {userModel,courseModel} = require("./moduls/studentSchema")
 const connectToDb = require("./config")
 const userRouter = require("./routes/userRouter.model")
 const server=express()
