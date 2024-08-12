@@ -1,0 +1,28 @@
+que_1 : Write Mongo query to retrieve documents from the products where supplier_id is 3 .
+ans:   db.products.aggregate({$match:{supplier_id:2}})
+
+que_2: Write Mongo query to retrieve the documents from the orders collection with "status": "shipped" .
+ans : db.orders.aggregate({$match:{status:"shipped"}})
+
+que_3: Write Mongo query to find buyers who from state CA ?
+ans:  db.buyers.aggregate({$match:{state:"CA"}})
+
+que_4: Write Mongo query to retrieve the amount,paymentstatus and paymentMethod from payments.
+ans:  db.payment.aggregate({$match:{paymentstatus:1},{paymentMethod:1}})
+\
+que_5 : Write Mongo query to retrieve documents from the orders with out _id.
+ans: db.orders.aggregate([{$project: {_id: }}])
+
+que_6:Write Mongo query to retrieve name,price from the products .
+ans: db.products.aggregate({$project:{name:1,price:1,_id:0}})
+
+que_7 : Write Mongo query to find buyers city and zip code ?
+ans: db.buyers.aggregate({$project:{city:1,zip_code:1,_id:0}})
+
+que_8:Write Mongo query to find buyers name,email, city and zip code ?
+ans: db.buyers.aggregate([{$project: {name: 1,email: 1,city: 1,zip_code: 1,_id: 0}}])
+
+que_9: Write Mongo query to find suppliers name and phone ?
+ans: db.suppliers.aggregate([{$project: {name: 1,phone: 1,city: 1,_id: 0}}])
+
+
