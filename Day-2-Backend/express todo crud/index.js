@@ -4,9 +4,9 @@ const express=require("express")
 const server=express()
 server.use(express.json()); // its middleware
 const PORT=8082
-function getData(){
+function getData(){ // for using reading the data 
     try {
-        const data=JSON.parse(fs.readFileSync("./db.json","utf-8"))
+        const data=JSON.parse(fs.readFileSync("./db.json","utf-8")) // json.parse converts json data to js object
         return data
     } catch (error) {
         console.log(error)
@@ -15,7 +15,7 @@ function getData(){
 }
 function writeDbData(data) {
     try {
-        fs.writeFileSync("./db.json", JSON.stringify(data, null), "utf-8");
+        fs.writeFileSync("./db.json", JSON.stringify(data, null), "utf-8"); // ehrn we send data from json formate when we use json.stringfy
     } catch (error) {
         console.error("Error writing to db.json:", error);
     }
@@ -103,3 +103,51 @@ const checkUser = (req,res,next)=>{
 server.listen(PORT,()=>{
     console.log(`server started on port : http://localhost:${PORT}`)
 })
+
+// const http=require("http")
+// const fs=require("fs")
+// const express=require("express")
+// const server=express()
+// server.use(express.json())//middleware
+// const PORT=8080
+// const readJson=()=>{
+// const data=fs.readFileSync("./db.json","utf-8")
+// return JSON.parse(data)
+// }
+// const writeJson=(data)=>{
+//     fs.writeFileSync("./db.json",JSON.stringify(data,null,2))
+// }
+// server.get("/todos",(req,res)=>{
+//    const data=readJson()
+//    res.send(data)
+// })
+// server.post("/todos",(req,res)=>{
+//    const data=readJson()
+//    const newTask={
+//     id:data.todos.length+1,
+//     task:req.body.task,
+//     status:false
+//    }
+//    data.todos.push(newTask)
+//    writeJson(data)
+//    res.json(newTask)
+// })
+// server.put("/todos/update",(req,res)=>{
+//     const data=readJson()
+//     data.todos.forEach((todo)=>{
+//         if(todo.id % 2 == 0 && todo.status == false){
+//             todo.status=true
+//         }
+//     })
+//     writeJson(data)
+//     res.json(data.todos)
+// })
+// server.delete("/todos/delete-true",(req,res)=>{
+//     const data=readJson()
+//        data.todos=data.todos.filter((todo)=>!todo.status)
+//        writeJson(data)
+//        res.json(data.todos)
+//     })
+// server.listen(PORT,()=>{
+//     console.log(`listening on port 3002 ${PORT}`);
+// })

@@ -3,7 +3,8 @@ const routes=express.Router()
 var jwt = require('jsonwebtoken');
 
 const {userModel,bookModel}=require("../models/userModel.js");
-const Auth = require("../middleware/Auth.js");
+// const Auth = require("../middleware/Auth.js");
+const Authantication = require("../middleware/Auth2.js");
 routes.get("/",async(req,res)=>{
     const data=await userModel.find({})
     res.json({message:"usr getting sucessfull",data:data})
@@ -31,17 +32,17 @@ routes.post("/login",async(req,res)=>{
         return res.json({message:"please ragisterd first"})
        
     }
-    const token= jwt.sign({ user: req.body.name }, 'Anku',{ expiresIn: '1h' });  // anku is a my secret key
+    const token= jwt.sign({ user: req.body.name }, 'Anku');  // anku is a my secret key
     res.json({message:"login sucessfull",token})
    } catch(error) {
     res.json({message:"error occured",error})
    }
 })
 
-routes.get("/products",Auth,async(req,res)=>{
+routes.get("/products",Authantication,async(req,res)=>{
     res.send("getting products")
 })
-routes.get("/posts",Auth,async(req,res)=>{
+routes.get("/posts",Authantication,async(req,res)=>{
     res.send("getting posts data")
 })
 module.exports=routes 

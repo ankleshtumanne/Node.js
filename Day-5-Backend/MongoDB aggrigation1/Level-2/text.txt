@@ -1,0 +1,41 @@
+que_1  Write Mongo query to retrieve the documents from the orders where the customer_id is 1.:
+ans :  db.orders.aggregate([{$match:{customer_id:1}}])
+
+que_2: Write Mongo query to retrieve documents from the products where supplier_id is 3 .
+ans: db.orders.aggregate([{$match:{customer_id:3}}])
+
+que_3: Write Mongo query to retrieve the documents from the orders collection with "status": "shipped" .
+ans:  db.orders.aggregate([{$match:{status:"shipped"}}])
+
+que_4 : Write Mongo query to retrieve the amount and paymentMethod from payments where the paymentMethod is not UPI.
+ans:  db.payments.aggregate([{$match: {paymentMethod: { $ne: "UPI" }}},{$project: {amount: 1,paymentMethod: 1,_id: 0}}])
+
+que_5: Write Mongo query to retrieve the paymentstatus where the amount is greater than 100.
+ans: db.payments.aggregate([{$match: {amount: { $gt: 100 }}},{$project: {paymentstatus: 1,_id: 0}}])
+
+que_6: Write Mongo query to retrieve the shipper_id and price from the order_details where the price is greater than 2000.
+ans: db.order_details.aggregate([{$match: {amount: { $gt: 2000 }}},{$project: {shipper_id: 1,price:1,_id: 0}}])
+
+que_7 :Write Mongo query to retrieve the customer_id and _id from the orders where the status is not shipped.
+ans: db.orders.aggregate([{$match: {status"not shipped":  }},{$project: {customer_id: 1,_id: 1}}])
+
+que_8: Write Mongo query to retrieve documents from the products where category_id is 1 with out product _id.
+ans: db.products.aggregate([{$match:{category_id:3},{$project:{ _id: 0}}}])
+
+que_9: Write Mongo query to retrieve name,quantity from the products where price greater than 1500 .
+ans: db.products.aggregate([{$match: {amount: { $gt: 1500 }}},{$project: {name: 1,quantity:1,_id: 0}}])
+
+que_10: Write Mongo query to retrieve the name from the shippers where the phone number is 1-800-742-5877.
+ans : db.shippers.aggregate([{$match: {phone number: 1-800-742-5877}},{$project: {name: 1,_id: 0}}])
+
+que_11: Write Mongo query to retrieve the city and phone of the suppliers where the suppliers name is Sony.
+ans: db.shippers.aggregate([{$match: {name: "Sony"}},{$project: {city: 1,phone:1,_id: 0}}])
+
+que_12: Write Mongo query to retrieve the name of the suppliers where the city is Tokyo.
+ans:  db.suppliers.aggregate([{$match: {city: "Tokyo"}},{$project: {name: 1,_id: 0}}])
+
+que_13: Write Mongo query to find amount of payment made through "UPI" ?
+ans: db.suppliers.aggregate([{$match: {paymentMethod: "UPI"}},{ $group: {_id: null,totalAmount: { $sum: "$amount" }}},{$project: {totalAmount:1,_id: 0}}])
+
+que_14:Write Mongo query to find buyers city as key name "city" who uses hotmail ?
+ans:db.buyers.aggregate([{$match: {email: "hotmail"}},{$project: { city: "$city",_id: 0}}])
