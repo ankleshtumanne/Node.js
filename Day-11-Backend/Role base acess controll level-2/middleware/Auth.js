@@ -8,8 +8,8 @@ async function Auth(req,res,next){
     // console.log("token",token)
     if(token){
         try {
-            jwt.verify(token,process.env.secret_key,async (err,decoded)=>{
-                if(err) return res.send("error occured in decoding")
+            jwt.verify(token,process.env.Secrete_Key,async (err,decoded)=>{
+                if(err) return res.send(`error occured in decoding ${err}`)
                 if(decoded){
                     const userId=decoded.id
                     

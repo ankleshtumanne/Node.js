@@ -4,19 +4,22 @@ const userschema=new mongoose.Schema({
     name:String,
     email:String,
     password:String,
-    Role:String
+    Role:String,
+    status:Boolean
 })
 
 
-const bookSchema=new mongoose.Schema({
+const taskSchema=new mongoose.Schema({
     title:String,
-    CreateBy:String,
+    endDate:String,
     createdAtdate: { type: Date, default: Date.now },
+    discription:String,
+    status:String
 })
 
-const BookModel=mongoose.model("book",bookSchema)
+const TaskModel=mongoose.model("book",taskSchema)
 
 
 const userModel=mongoose.model("user",userschema)
 
-module.exports={userModel,BookModel}
+module.exports={userModel,TaskModel}
